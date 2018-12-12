@@ -8,17 +8,3 @@ RUN apt-get update && \
 RUN npm install -g --no-save yarn && \
     chmod +x /usr/local/lib/node_modules/yarn/bin/yarn.js && \
     yarn global upgrade yarn
-
-RUN mkdir /app
-
-COPY /code /app
-
-WORKDIR /app
-
-RUN yarn install
-RUN yarn audit
-
-RUN yarn build-ci
-
-ENTRYPOINT ["bash"]
-CMD [ "--help" ]
